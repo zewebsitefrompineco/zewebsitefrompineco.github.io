@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <head>
+        <title>Clicker Game by Amir</title> 
+        <style>
+            .funny {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 0;
+    border: none;
+    background: none;
+}
+.cooly {
+font-family: dosis;
+color: white;
+filter: drop-shadow(0 0 0.15rem #020202);
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: black;
+text-align: center;
+font-size: 350%;
+}
+.funny:active {
+    transform: translateY(4px);
+  }
+
+body {
+    background-color: rgb(2, 24, 0);
+}
+
+h1 {
+    color: white;
+    font-family: dosis;
+    font-size: 40px;
+}
+h2 {
+    color: rgb(251, 255, 0);
+    font-family: dosis;
+    font-size: 30px;
+}
+
+span {
+    color: white;
+    font-family: dosis;
+    font-size: 40px;
+}
+
+@font-face {
+    font-family: dosis;
+    src: url(Dosis-Bold.ttf);
+    
+}
+
+.shop {
+    background-color: rgb(0, 109, 0);
+    
+    border: 15px solid rgb(0, 70, 0);
+    padding: 50px;
+    margin: 20px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+        </style>
+    </head>
+    <body>
+
+        
+        
+		<h1 style="text-align: center;">Number of creature: <br> <span id="creature"></span><br></h1>
+
+        <h2 style="text-align: center;">SCROLL DOWN FOR ITEM SHOP ⬇️</h2>
+        <button onclick="clicker.click();" style="width: 415px;" class="funny">
+            <img width="400px" src="https://i.ibb.co/Krhc7BR/musclecreature.jpg" alt="creature BOIIII">
+        </button>
+        <h2 style="text-align: center;">Clicker Level: <span id="clicker_level"></span></h2>
+
+
+		<h2 style="color: rgb(2, 24, 0);">Production: <span style="color: rgb(2, 24, 0);" id="clicker_productivity"></span><br></h2>
+
+
+
+          <div class="shop">
+            <h1 style="text-align: center;">Item Shop WORK IN PROGRESS</h1>
+            <h2>Improvement Price: <span id="clicker_price"></span><br></h2>
+            <button onclick="clicker.improve();" style="width: 415px;" class="funny">
+                <img width="400px" src="https://i.ibb.co/Krhc7BR/musclecreature.jpg" alt="creature BOIIII">
+                <span id="buildings"></span>
+            </button>
+          </div>
+          <script>
+
+            class Clicker
+            {
+
+
+
+                load() {
+                    player = JSON.parse(localStorage.getItem('player'));
+                    score = JSON.parse(localStorage.getItem('score'));
+                }
+                constructor()
+                {
+                    this.level = 1
+                    this.price = 20;
+            
+                    this.level_display = document.getElementById("clicker_level");
+                    this.price_display = document.getElementById("clicker_price");
+                    this.productivity_display = document.getElementById("clicker_productivity");
+            
+                    this.renew_display();
+                }
+            
+                click()
+                {
+                    creature += this.get_production_value();
+                    creature_produced += this.get_production_value();
+                    renew_creature();
+                }
+            
+                get_production_value()
+                {
+                    return Math.floor(1 + (0.05 * altogether_productivity * (this.level - 1)) + (this.level - 1));
+                }
+            
+                improve()
+                {
+                    if(creature >= this.price)
+                    {
+                        creature -= this.price;
+                        this.level += 1;
+                        this.price *= 2;
+                        this.renew_display();
+                    }
+                    else
+                    {
+
+                    }
+                }
+            
+                renew_display()
+                {
+                    this.level_display.innerHTML = this.level;
+                    this.price_display.innerHTML = this.price;
+                    this.productivity_display.innerHTML = this.get_production_value();
+                }
+            }
+            
+            class Building
+            {
+                constructor(name, productivity, price)
+                {
+                    this.name = name;
+                    this.level = 0;
+                    this.price = price;
+                    this.productivity = productivity;
+            
+
+                    this.area = document.createElement("span");
+                    this.area.id = name;
+            
+                    this.level_display = document.createElement("span");
+                    this.level_display.id = this.name + "_level";
+            
+                    this.productivity_display = document.createElement("span");
+                    this.productivity_display.id = this.name + "_productivity";
+            
+                    this.price_display = document.createElement("span");
+                    this.price_display.id = this.name + "_price";
+            
+                    this.button = document.createElement("button");
+                    this.button.innerHTML = "<img left=\"100px\" style=\"position: relative;left: -103px; width: 200%;\" src=\"https://i.ibb.co/Krhc7BR/musclecreature.jpg\">";
+                    this.button.style = "display: block; margin-left: auto; margin-right: auto; width: 50%; padding: 0; border: none; background: none; }";                    
+                        this.button.onclick = this.improve.bind(this);
+            
+
+//                    this.area.append(document.createTextNode(name + " Level: "));
+//                    this.area.append(this.level_display);
+//                    this.area.append(document.createElement("br"));
+//                     const billycreature = document.createElement("h1")
+//                    billycreature.innerHTML = "Creature per Second: <span id=\"_productivity\"></span>"
+//                    billycreature.style = "color: rgb(251, 255, 0);"
+//                    this.area.append(billycreature);  
+// some experiments to make it look better but its being funny :(
+
+                    this.area.append(document.createTextNode("creature per Second: "));
+                    this.area.append(this.productivity_display);
+                    this.area.append(document.createElement("br"));
+            
+                    this.area.append(document.createTextNode("Improvement Price: "));
+                    this.area.append(this.price_display);
+                    this.area.append(document.createElement("br"));
+            
+                    this.area.append(this.button);
+                    this.area.append(document.createElement("br"));
+                    this.area.append(document.createElement("br"));
+                    
+                        setInterval(this.produce.bind(this), 1000);
+                }
+                
+                get_price() 
+                {
+                    return (this.price / 2) * (this.level * this.level + 1) + (this.price / 2) * (this.level + 1)
+                }
+                
+                improve()
+                {
+                        if(creature >= this.get_price())
+                        {
+                            creature -= this.get_price();
+                            this.level += 1;
+                            altogether_productivity += this.productivity;
+                            this.renew_display();
+                            clicker.renew_display();
+                        }
+                        else
+                        {
+                        if(this.get_price() > creature)
+                        {
+                            alert("Not enough creature!");
+                        }
+                    }
+                }
+            
+                renew_display()
+                {
+                    this.level_display.innerHTML = this.level;
+                    this.productivity_display.innerHTML = this.get_production_value();
+                    this.price_display.innerHTML = this.get_price();
+                }
+            
+            
+                set_visible()
+                {
+                    buildings.append(this.area);
+                    this.renew_display();
+                }
+            
+                produce()
+                {
+                    creature += this.get_production_value();
+                    creature_produced += this.get_production_value();
+                }
+                
+                get_production_value()
+                {
+                    return this.level * this.productivity;
+                }
+            }
+            
+            
+            function renew_creature()
+            {
+                creature_display.innerHTML = creature;
+                creature_produced_display.innerHTML = creature_produced;
+                
+                if(this.creature_produced >= 200 && bakery_enabled == 0) 
+                {
+                    bakery.set_visible();
+                    bakery_enabled = 1;
+                    
+                }
+                if(this.creature_produced >= 2000 && factory_enabled == 0)
+                {
+                    factory.set_visible(); 
+                    factory_enabled = 1;
+                }
+                if(this.creature_produced >= 20000 && cookie_tesla_enabled == 0)
+                {
+                    cookie_tesla.set_visible();
+                    cookie_tesla_enabled = 1;
+                }
+            
+                if(this.creature_produced >= 200000 && cookie_gigant_enabled == 0) 
+                {
+                    cookie_gigant.set_visible(); 
+                    cookie_gigant_enabled = 1;
+                }
+            }
+
+            var loadchecker = 0;
+            
+            var creature = 0;
+            var creature_produced = 0;
+            var altogether_productivity = 0;
+            
+            var creature_display = document.getElementById("creature");
+            var creature_produced_display = document.getElementById("creature_produced");
+            
+            var buildings = document.getElementById("buildings");
+            
+            bakery_enabled = 0;
+            factory_enabled = 0;
+            cookie_tesla_enabled = 0;
+            cookie_gigant_enabled = 0;
+            
+            clicker = new Clicker();
+            baker = new Building("Baker", 1, 20);
+            baker.set_visible();
+            bakery = new Building("Bakery", 10, 200);
+            // definintly not geepeetee man shhhhh
+            factory = new Building("Factory", 100, 2000);
+            cookie_tesla = new Building("Cookie Tesla", 1000, 20000);
+            cookie_gigant = new Building("Cookie Gigant", 10000, 200000);
+            
+            setInterval(renew_creature, 500);
+
+            window.onload = function load() {
+            if (loadchecker == 0) {
+                loadchecker = JSON.parse(localStorage.getItem('loadcheck'))
+            }
+            if(loadchecker == 1)
+            {
+            creature = JSON.parse(localStorage.getItem('creature'));              
+            clicker.level = JSON.parse(localStorage.getItem('level'));  
+            clicker.price = JSON.parse(localStorage.getItem('clickprice'));
+            clicker.renew_display();
+            buildings.renew_display();
+            renew_creature(); 
+            } 
+            };
+
+            window.addEventListener("beforeunload", function() {
+                loadchecker = 1;
+                localStorage.setItem('loadcheck',JSON.stringify(loadchecker))
+                localStorage.setItem('level', JSON.stringify(clicker.level));
+                localStorage.setItem('creature', JSON.stringify(creature, 1));   
+                localStorage.setItem('clickprice', JSON.stringify(clicker.price));               
+            });
+                      </script>
+    </body>
+</html>

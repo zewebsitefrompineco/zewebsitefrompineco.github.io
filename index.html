@@ -1,0 +1,121 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alata&family=VT323&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alata&family=VT323&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="winbox.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="formation-bois">
+
+        <button id="itsTVtime">
+            <div>
+                <img class="windowimg" src="img/music.png">
+                <h2>Music</h2>
+            </div>
+        </button>
+        <button id="aythatme">            <div>
+                <img class="windowimg" src="img/aboutme.png">
+                <h2>About Me</h2>
+            </div></button>
+        <button id="gitbut">
+                        <div>
+                <img class="windowimg" src="img/github.png">
+                <h2>Github</h2>
+            </div>
+            </button>
+        <button id="iiiiits_time">                        <div>
+                <img class="windowimg" src="img/tetris.png">
+                <h2>Tetris</h2>
+            </div></button>
+        <button id="goopster">
+                                    <div>
+                <img class="windowimg" src="https://i.ibb.co/Krhc7BR/musclecreature.jpg">
+                <h2><strong>Feed the Goo</strong>ster</h2>
+            </div>
+            </button>
+
+
+
+
+
+    </div>
+
+
+    <script src="script.js"> </script>
+    <script>        console.log('oh boi')
+        const tetrisbutton = document.getElementById("iiiiits_time");
+        const goobutton = document.getElementById("goopster")
+        const githubbutton= document.getElementById("gitbut")
+        const musicbutton = document.getElementById("itsTVtime")
+        const aboutme = document.getElementById("aythatme")
+
+        aboutme.addEventListener("click", function() {
+            var theurl = window.location.href
+            theurl = theurl + "/tetris.html"
+            console.log(theurl)
+  new WinBox({
+    url: "/aboutme.html",
+    title: "about me",
+    icon: "img/placeholder.png",
+    background: "#252b4e"
+});
+});
+
+
+        tetrisbutton.addEventListener("click", function() {
+            var theurl = window.location.href
+            theurl = theurl + "/tetris.html"
+            console.log(theurl)
+  new WinBox({
+    url: "/tetris.html",
+    title: "Tetris",
+    icon: "img/tetris.png",
+    background: "#252b4e"
+});
+});
+
+        musicbutton.addEventListener("click", function() {
+            var theurl = window.location.href
+            theurl = theurl + "/tetris.html"
+            console.log(theurl)
+  new WinBox({
+    url: "/music.html",
+    title: "My tOp 7 awEsome tubUlaR songs",
+    icon: "img/tetris.png",
+    background: "#252b4e"
+});
+});
+
+
+        githubbutton.addEventListener("click", function() {
+            var theurl = window.location.href
+            theurl = theurl + "/clicker.html"
+            console.log(theurl)
+            window.open("https://github.com/pineapplegoob")
+  //new WinBox({
+    //url: "https://github.com/pineapplegoob",
+   // title: "github",
+   // icon: "img/placeholder.png",
+   // background: "#252b4e"
+//});
+});
+
+        goobutton.addEventListener("click", function() {
+            var theurl = window.location.href
+            theurl = theurl + "/clicker.html"
+            console.log(theurl)
+  new WinBox({
+    url: "/clicker.html",
+    title: "Feed the Goo",
+    icon: "img/placeholder.png",
+    background: "#252b4e"
+});
+});
+</script>
+</body>
