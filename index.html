@@ -7,6 +7,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Alata&family=VT323&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="XP.css">
 
+<!-- The title of your website embed -->
+<meta property="og:title" content="It Ze Webusito" />
+
+<!-- A brief, catchy description of your website -->
+<meta property="og:description" content="goops, choops and more" />
+
+<!-- The direct link to your website -->
+<meta property="og:url" content="https://zewebsitefrompineco.github.io/" />
+
+<!-- The direct link to a preview image (Recommended size: 1200x630px) -->
+<meta property="og:image" content="https://zewebsitefrompineco.github.io/img/startup%20logo.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="winbox.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -86,15 +98,18 @@ const startupdiv = document.getElementById('ignition');
 const audiostart = new Audio('audio/windows-7-startup.mp3')
 
 window.addEventListener('load',() => {
+//           window.addEventListener('keydown',function(event) {
+  //          if (event.key == 'Enter') {
 setTimeout( async () => {
 
     audiostart.play()
     console.log('work?')
     startupdiv.classList.add('fade-out');
     document.getElementById('loadster').classList.add('fade-out');
-}, 1800);
-
+}, 800);
+ //           }
 })
+//})
 
 
 
