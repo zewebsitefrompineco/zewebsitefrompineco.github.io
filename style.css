@@ -1,8 +1,11 @@
 .formation-bois {
-display: grid;
-grid-template-columns: minmax(100px, max-content) repeat(auto-fill, 200px) 20%;
-    gap: 10px;
+.formation-bois {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
   width: 100%;
+  padding-right: 30vw;
+  box-sizing: border-box;
 }
 
 
@@ -11,9 +14,9 @@ grid-template-columns: minmax(100px, max-content) repeat(auto-fill, 200px) 20%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
+    padding-right:  0vw;
   width: 100%;
 } }
-
 .buttonboistack {
     display: flex;
     flex-direction: column;
